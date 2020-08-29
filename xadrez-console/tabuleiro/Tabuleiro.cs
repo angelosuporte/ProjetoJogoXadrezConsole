@@ -17,5 +17,11 @@
         {
             return pecas[linha, coluna];
         }
+        //Esta classe deve ter um método para oferecer operações de colocar uma peca no tabuleiro
+        public void colocarPeca(Peca p, Posicao pos)
+        {
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos; //<--onde a peça está(posição da peça) em relação em relação ao tabuleiro
+        }
     }
 }
