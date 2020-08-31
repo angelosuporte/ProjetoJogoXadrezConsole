@@ -23,14 +23,18 @@
             return pecas[pos.linha, pos.coluna]; //<--Melhoria: vai retornar as peças nas posições
         }
 
-        public bool existePeca(Posicao pos)
+        public bool existePeca(Posicao pos) 
         {
-            validarPosicao(pos);
-            return peca(pos) != null;
+            validarPosicao(pos); //<---vai verifiar se a posição é válida, se não for válida a exceção será lançada
+            return peca(pos) != null; //<--basicamente para verificar se existe peça é só verificar se é diferente de nulo, mas antes é importante verificar se a aquela posição é valida, por isso antes será executado acima que verifica se a posição é valida
         }
         
-        public void colocarPeca(Peca p, Posicao pos)
+        public void colocarPeca(Peca p, Posicao pos)//<--Melhorado porque só "podemos colocar pecas onde não há peça"
         {
+            if (existePeca(pos))
+            {
+                throw new TabuleiroException("Já existe uma peça nessa posição");
+            }
             pecas[pos.linha, pos.coluna] = p;
             p.posicao = pos; 
         }
