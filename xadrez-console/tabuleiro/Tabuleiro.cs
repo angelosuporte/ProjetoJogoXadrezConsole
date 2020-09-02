@@ -18,18 +18,18 @@
             return pecas[linha, coluna];
         }
 
-        public Peca peca(Posicao pos) //<--sobrecarga do método Peca
+        public Peca peca(Posicao pos) 
         {
-            return pecas[pos.linha, pos.coluna]; //<--Melhoria: vai retornar as peças nas posições
+            return pecas[pos.linha, pos.coluna]; 
         }
 
         public bool existePeca(Posicao pos) 
         {
-            validarPosicao(pos); //<---vai verifiar se a posição é válida, se não for válida a exceção será lançada
-            return peca(pos) != null; //<--basicamente para verificar se existe peça é só verificar se é diferente de nulo, mas antes é importante verificar se a aquela posição é valida, por isso antes será executado acima que verifica se a posição é valida
+            validarPosicao(pos); 
+            return peca(pos) != null;
         }
         
-        public void colocarPeca(Peca p, Posicao pos)//<--Melhorado porque só "podemos colocar pecas onde não há peça"
+        public void colocarPeca(Peca p, Posicao pos)
         {
             if (existePeca(pos))
             {
@@ -37,6 +37,19 @@
             }
             pecas[pos.linha, pos.coluna] = p;
             p.posicao = pos; 
+        }
+
+        public Peca retirarPeca(Posicao pos)
+        {
+            if (peca(pos) == null) //<-- se não tem nenhuma peça naquela posição, não será retirado o que não tem, vai retornar null
+            {
+                return null;
+            }//--se passar desse if é porque tem uma peça ali
+            Peca aux = peca(pos);//<-- a variável aux vai receber a peça
+            aux.posicao = null; //<-- nesse passo ao atribuir naquela posição o valor null a peça é retirada
+            pecas[pos.linha, pos.coluna] = null; //internamente vai atribuir null à matriz
+            return aux;
+
         }
 
         public bool posicaoValida(Posicao pos)
