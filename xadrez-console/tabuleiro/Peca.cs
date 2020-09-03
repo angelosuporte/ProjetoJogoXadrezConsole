@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
@@ -19,5 +19,8 @@
         {
             qteMovimentos++;
         }
+
+        public abstract bool[,] movimentosPossiveis(); //<--método pra verificar para qual casa podemos movimentar a peça
+        //lembrando que cada peça tem movimentos específicos, então a lógica será implementada na própria classe que corresponde a peça
     }
 }
