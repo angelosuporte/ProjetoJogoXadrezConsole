@@ -12,8 +12,8 @@ namespace xadrez
             this.coluna = coluna;
             this.linha = linha;
         }
-        //coverter a Posicao do xadrez para uma posição interna da matriz
-        public Posicao toPosicao()
+        
+        public Posicao toPosicao()  //<-----coverter a Posicao do xadrez para uma posição interna da matriz
         {
             return new Posicao(8 - linha, coluna - 'a');
         }
