@@ -27,6 +27,7 @@ namespace xadrez
             pos.definirValores(posicao.linha - 1, posicao.coluna);
             while(tab.posicaoValida(pos) && podeMover(pos))
             {
+                mat[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos) != null && tab.peca(pos).cor != cor) //se encontrar uma peça e for com cor diferente, vai parar o while
                 {
                     break; 
@@ -38,6 +39,7 @@ namespace xadrez
             pos.definirValores(posicao.linha + 1, posicao.coluna);
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
+                mat[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos) != null && tab.peca(pos).cor != cor) 
                 {
                     break;
@@ -49,6 +51,7 @@ namespace xadrez
             pos.definirValores(posicao.linha, posicao.coluna + 1);
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
+                mat[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos) != null && tab.peca(pos).cor != cor) 
                 {
                     break;
@@ -60,6 +63,7 @@ namespace xadrez
             pos.definirValores(posicao.linha, posicao.coluna - 1);
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
+                mat[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos) != null && tab.peca(pos).cor != cor) 
                 {
                     break;

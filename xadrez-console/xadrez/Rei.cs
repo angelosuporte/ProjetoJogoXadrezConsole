@@ -18,7 +18,7 @@ namespace xadrez
             return p == null || p.cor != cor; //<--Pode mover se a posição for nula ou se estiver uma peca com cor diferente
         }
 
-        public override bool[,] movimentosPosssiveis()
+        public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];
 
@@ -49,7 +49,7 @@ namespace xadrez
                 mat[pos.linha, pos.coluna] = true;
             }
             //mover para baixo
-            pos.definirValores(posicao.linha +1, posicao.coluna);
+            pos.definirValores(posicao.linha + 1, posicao.coluna);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;

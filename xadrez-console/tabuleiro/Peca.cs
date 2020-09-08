@@ -19,8 +19,8 @@
         {
             qteMovimentos++;
         }
-
-        public abstract bool[,] movimentosPossiveis(); //<--método pra verificar para qual casa podemos movimentar a peça
-        //lembrando que cada peça tem movimentos específicos, então a lógica será implementada na própria classe que corresponde a peça
+        
+        public abstract bool[,] movimentosPossiveis(); 
+        
     }
 }
