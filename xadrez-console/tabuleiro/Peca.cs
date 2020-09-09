@@ -20,6 +20,23 @@
             qteMovimentos++;
         }
         
+        public bool existeMovimentosPossiveis() 
+        {
+            bool[,] mat = movimentosPossiveis();
+            for(int i = 0; i < tab.linhas; i++)
+            {
+                for(int j = 0; j < tab.colunas; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false; //<--se percorreu a matriz e verificou que não existe movimentos possíveis vai retornar falso
+        }
+
+
         public abstract bool[,] movimentosPossiveis(); 
         
     }
