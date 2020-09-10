@@ -36,9 +36,9 @@
             return false; //<--se percorreu a matriz e verificou que não existe movimentos possíveis vai retornar falso
         }
 
-        public bool podeMoverPara(Posicao pos)
+        public bool podeMoverPara(Posicao pos) //Vamos descrever os passos para:
         {
-            return movimentosPossiveis()[pos.linha, pos.coluna];
+            return movimentosPossiveis()[pos.linha, pos.coluna]; //<--- 1º Passo: O método movimentosPossiveis é especializado de acordo com cada Classe que especifica o tipo de peça, Ex.: torre, rei e etc.
         }
 
         public abstract bool[,] movimentosPossiveis(); 
