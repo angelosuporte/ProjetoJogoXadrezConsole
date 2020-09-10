@@ -36,6 +36,10 @@
             return false; //<--se percorreu a matriz e verificou que não existe movimentos possíveis vai retornar falso
         }
 
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movimentosPossiveis()[pos.linha, pos.coluna];
+        }
 
         public abstract bool[,] movimentosPossiveis(); 
         
