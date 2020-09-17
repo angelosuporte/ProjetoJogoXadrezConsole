@@ -8,7 +8,7 @@ namespace xadrez
         public Tabuleiro tab { get; private set; }
         public int turno { get; private set; }
         public Cor jogadorAtual { get; private set; }
-        public bool terminada { get; set; }
+        public bool terminada { get; private set; }
         private HashSet<Peca> pecas; 
         private HashSet<Peca> capturadas; 
         public bool xeque { get; private set; }
@@ -31,7 +31,7 @@ namespace xadrez
             p.incrementarQteMovimentos();
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.colocarPeca(p, destino);
-            if (pecaCapturada != null) //<--(-)
+            if (pecaCapturada != null) 
             {
                 capturadas.Add(pecaCapturada);
             }
@@ -90,14 +90,14 @@ namespace xadrez
 
         public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if (!tab.peca(origem).podeMoverPara(destino)) //<-- 2º Passo:podeMoverPara é método da classe Peca
+            if (!tab.peca(origem).podeMoverPara(destino)) 
             {
                 throw new TabuleiroException("Posição de destino inválida!");
             }
         }
 
 
-        public void mudaJogador()
+        private void mudaJogador()
         {
             if (jogadorAtual == Cor.Branca)
             {
@@ -110,7 +110,7 @@ namespace xadrez
 
         }
 
-        public HashSet<Peca> pecasCapturadas(Cor cor) //Vai colocar em um conjunto as peças de uma mesma cor
+        public HashSet<Peca> pecasCapturadas(Cor cor) 
         {
             HashSet<Peca> aux = new HashSet<Peca>();
             foreach (Peca x in capturadas)
@@ -126,7 +126,7 @@ namespace xadrez
         public HashSet<Peca> pecasEmJogo(Cor cor)
         {
             HashSet<Peca> aux = new HashSet<Peca>();
-            foreach (Peca x in capturadas)
+            foreach (Peca x in pecas) //<---Achei o problema: no lugar de "pecas" estava "capturadas" - após mover a origem para destino estava lançando exceção como se não houvesse Rei da cor branca, ou seja, as peças em jogo estava capturadas
             {
                 if (x.cor == cor)
                 {
@@ -164,11 +164,11 @@ namespace xadrez
         public bool estaEmXeque(Cor cor)
         {
             Peca R = rei(cor);
-            if (R == null)
+            if ( R == null)
             {
-                throw new TabuleiroException("Não tem rei da cor" + cor + "no tabuleiro!");
+                throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro!");
             }
-            foreach (Peca x in pecasEmJogo(adversaria(cor)))
+            foreach (Peca x in pecasEmJogo(adversaria(cor)))//<--testa se o rei está em xeque
             {
                 bool[,] mat = x.movimentosPossiveis();
                 if (mat[R.posicao.linha, R.posicao.coluna])
@@ -179,7 +179,7 @@ namespace xadrez
             return false;
         }
 
-        public void colocarNovaPeca(char coluna, int linha, Peca peca)//<--(*)
+        public void colocarNovaPeca(char coluna, int linha, Peca peca)
         {
                 tab.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
                 pecas.Add(peca);
