@@ -68,8 +68,16 @@ namespace xadrez
                 xeque = false;
             }
 
-            turno++;
-            mudaJogador();
+            if (testeXequemate(adversaria(jogadorAtual)))
+            {
+                terminada = true;
+            }
+
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
         }
 
         public void validarPosicaoDeOrigem(Posicao pos)
@@ -177,6 +185,36 @@ namespace xadrez
                 }
             }
             return false;
+        }
+
+        public bool testeXequemate(Cor cor)
+        {
+            if (!estaEmXeque(cor)) //esta condição estabelece que para ocorrer o xequemate, é necessário haver xeque
+            {
+                return false;
+            }
+            foreach (Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = x.movimentosPossiveis(); //será verificado se há movimentos possíveis que tirem do xequemate
+                for (int i = 0; i < tab.linhas; i++)
+                {
+                    for (int j = 0; j < tab.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executaMovimento(x.posicao, destino); //executa o movimento*
+                            bool testeXeque = estaEmXeque(cor); //verifica se está em xeque
+                            desfazMovimento(x.posicao, destino, pecaCapturada); //desfaz o movimento 
+                            if (!testeXeque)  // se não estiver em xeque, é porque o movimento* tirou do xeque
+                            {
+                                return false; //não esta em xequemate
+                            }
+                        }
+                    }
+                }
+            }
+            return true; //se verificou que não há movimentos que tirem do xeque, é porque está em xequemate
         }
 
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
