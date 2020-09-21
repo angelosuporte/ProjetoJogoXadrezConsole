@@ -15,7 +15,7 @@ namespace xadrez
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);
-            return p == null || p.cor != cor; //<--Pode mover se a posição for nula ou se estiver uma peca com cor diferente
+            return p == null || p.cor != cor; //<-- Testa se a casa está vazia. Pode mover se a posição for nula ou se estiver uma peca com cor diferente
         }
 
         public override bool[,] movimentosPossiveis()

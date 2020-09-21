@@ -41,7 +41,7 @@
             return false; 
         }
 
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos) //mostra para onde a peça pode mover
         {
             return movimentosPossiveis()[pos.linha, pos.coluna]; 
         }
