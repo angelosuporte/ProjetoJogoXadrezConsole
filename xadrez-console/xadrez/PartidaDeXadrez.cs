@@ -202,10 +202,11 @@ namespace xadrez
                     {
                         if (mat[i, j])
                         {
+                            Posicao origem = x.posicao;
                             Posicao destino = new Posicao(i, j);
-                            Peca pecaCapturada = executaMovimento(x.posicao, destino); //executa o movimento*
+                            Peca pecaCapturada = executaMovimento(origem, destino); //executa o movimento*
                             bool testeXeque = estaEmXeque(cor); //verifica se está em xeque
-                            desfazMovimento(x.posicao, destino, pecaCapturada); //desfaz o movimento 
+                            desfazMovimento(origem, destino, pecaCapturada); //desfaz o movimento 
                             if (!testeXeque)  // se não estiver em xeque, é porque o movimento* tirou do xeque
                             {
                                 return false; //não esta em xequemate
