@@ -97,7 +97,7 @@ namespace xadrez
                     }
                 }
 
-                
+
                 if (qteMovimentos == 0 && !partida.xeque)
                 {
                     // #jogadaespecial roque grande
@@ -114,7 +114,7 @@ namespace xadrez
                     }
 
                 }
-
+            }
             return mat;
         }
     }
