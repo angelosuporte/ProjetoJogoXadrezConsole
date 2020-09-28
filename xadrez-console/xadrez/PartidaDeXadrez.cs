@@ -12,7 +12,7 @@ namespace xadrez
         private HashSet<Peca> pecas; 
         private HashSet<Peca> capturadas; 
         public bool xeque { get; private set; }
-        private Peca vulneravelEnPassant;
+        public Peca vulneravelEnPassant { get; private set; }
 
         public PartidaDeXadrez()
         {
