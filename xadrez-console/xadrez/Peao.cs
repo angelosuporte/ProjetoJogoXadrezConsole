@@ -60,15 +60,15 @@ namespace xadrez
                 // #jogadaespecial en passante
                 if (posicao.linha == 3)
                 {
-                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1); //Posição da peça vulnerável
                     if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelEnPassant)
                     {
-                        mat[esquerda.linha, esquerda.coluna] = true;
+                        mat[esquerda.linha -1, esquerda.coluna] = true; //Movimento possível
                     }
                     Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
                     if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelEnPassant)
                     {
-                        mat[direita.linha, direita.coluna] = true;
+                        mat[direita.linha - 1, direita.coluna] = true;
                     }
                 }
             }
@@ -105,12 +105,12 @@ namespace xadrez
                 Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
                 if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelEnPassant)
                 {
-                    mat[esquerda.linha, esquerda.coluna] = true;
+                    mat[esquerda.linha + 1, esquerda.coluna] = true;
                 }
                 Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
                 if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelEnPassant)
                 {
-                    mat[direita.linha, direita.coluna] = true;
+                    mat[direita.linha + 1, direita.coluna] = true;
                 }
             }
 
